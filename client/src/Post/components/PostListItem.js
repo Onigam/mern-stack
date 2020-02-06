@@ -25,8 +25,11 @@ function PostListItem({ post, onDelete }) {
             {post.title}
           </Link>
         </Typography>
-        <Typography color="textSecondary" component="p">
+        <Typography component="p" className="mt-3">
           {post.content}
+        </Typography>
+        <Typography color="textSecondary" component="p" className="mt-3 font-italic">
+          From {post.name}
         </Typography>
       </CardContent>
       <CardActions>
