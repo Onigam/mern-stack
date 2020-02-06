@@ -1,7 +1,10 @@
 
 # Alaya mern dev challenge 
 
-Here is a MERN stack application composed by 2 repositories: the server and the client:
+
+In this project which is a MERN stack you can write and edit post blog.
+
+This application is composed by 2 repositories, the server and the client:
 
 - In the server repository you can find an express HTTP server that connect to a local mongo database and expose
 the api.
@@ -28,8 +31,6 @@ To start the Front-end
 
 
 ## Show us your skills :)
-
-In this project (*which is just a [mern-starter](http://mern.io/documentation.html)*) you can write and edit post blog.
 
 To show us your skills we would like you to build at least one of theses 2 features:
 
