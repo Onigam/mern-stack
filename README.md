@@ -44,14 +44,17 @@ We want you to use JWT to manage user session https://jwt.io/, to do that you ca
 
 Only connected users will be able to create post, and only the author of the post will be able to delete it
 
-### 2 - User onboarding guide
+### 2 - Picture upload
 
-Here when the user has finished to create his account we want the application to provide an interactive guide to explain him
-how works the blog.
+Here we want the user to be able to upload and manage pictures on his post.
 
-Free to you to implement the concept you want.
+Free to you to use the service you want to do that and to store your assets (like Cloudinary for example).
 
-Note that the guide has to be accessible again if the user wants.
+The purpose is to enhance post with media.
+
+You can design the layout you want on cards and on each post page.
+
+Also if you want to add one or more features or change the layout, styling and theming about the blog you can.
 
 Good luck :)
 
