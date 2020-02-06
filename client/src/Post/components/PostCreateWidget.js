@@ -9,7 +9,6 @@ const useStyles = makeStyles(theme => ({
     root: {
         '& > *': {
             margin: theme.spacing(1),
-            width: 400,
         },
     },
 }));
@@ -36,7 +35,7 @@ const PostCreateWidget = ({ addPost }) => {
   };
 
   return (
-    <div className={`${classes.root} d-flex flex-column my-4`}>
+    <div className={`${classes.root} d-flex flex-column my-4 w-100`}>
         <h3>Create new post</h3>
         <TextField variant="filled" label="Author name" name="name" onChange={handleChange} />
         <TextField variant="filled" label="Post title" name="title" onChange={handleChange} />
