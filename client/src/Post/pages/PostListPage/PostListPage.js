@@ -6,6 +6,7 @@ import PostList from '../../components/PostList';
 import PostCreateWidget from '../../components/PostCreateWidget';
 // Import Actions
 import { addPostRequest, deletePostRequest, fetchPosts } from '../../PostActions';
+import Logo from '../../../logo.svg';
 
 const PostListPage = ({ showAddPost }) => {
 
@@ -29,8 +30,11 @@ const PostListPage = ({ showAddPost }) => {
   return (
     <div className="container">
       <div className="row">
-        <div className="col-12">
-          <h1 className="mt-4"> MERN Blog </h1>
+        <div className="col-12 d-flex align-items-center">
+          <img className="mx-3" src={Logo} alt="Logo" style={{ height: '72px'}}/>
+          <h1 className="mt-4">
+             Alaya Blog
+          </h1>
         </div>
       </div>
       <hr />
