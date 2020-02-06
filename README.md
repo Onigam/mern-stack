@@ -46,12 +46,13 @@ Only connected users will be able to create post, and only the author of the pos
 
 ### 2 - User onboarding guide
 
-Here when the user has finished to create his account we want the application to provide an interactive guide to explain to him
+Here when the user has finished to create his account we want the application to provide an interactive guide to explain him
 how works the blog.
 
 Free to you to implement the concept you want.
 
 Note that the guide has to be accessible again if the user wants.
 
+Good luck :)
 
 _Notes: For evaluation, we will mainly focus on the code structure and readability, the separation of responsibilities in the methods/components, and the visual consistency._
