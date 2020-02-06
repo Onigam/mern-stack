@@ -32,48 +32,26 @@ To start the Front-end
 
 ## Show us your skills :)
 
-To show us your skills we would like you to build at least one of theses 2 features:
+To show us your skills we would like you to build theses 2 things:
 
-### 1 - Add geolocation to post creation and display it on post element (Full-stack)
+### 1 - User account management
 
-The purpose is to be able to attach a geolocation by entering an address in the `PostCreatWidget`,
- to persit it in the `post.js` mongoose model and then to display it using the `PostListItem.js`
+At first we want the users to be able to create their account to post Articles.
 
-For the geocoding you can use the api you want (like [nominatim](https://wiki.openstreetmap.org/wiki/Nominatim) for [openstreetmap](https://www.openstreetmap.org/#map=5/46.449/2.210) 
-or [google maps](https://developers.google.com/maps/documentation/geocoding/start)).
+To do that you need to create a login page or dialog and a signup process.
 
-It would be perfect if we can store at least one gps location and one address in database by post.
+We want you to use JWT to manage user session https://jwt.io/, to do that you can use passport with a JWT policy.
 
-You can maybe use the [MongoDB geospatial api](https://docs.mongodb.com/manual/geospatial-queries/) to format your data
+Only connected users will be able to create post, and only the author of the post will be able to delete it
 
-### 2 - Add comments and likes on posts
+### 2 - User onboarding guide
 
-We want to be able to make a comment and to like each post.
+Here when the user has finished to create his account we want the application to provide an interactive guide to explain to him
+how works the blog.
 
-The user that comments will have to put an author name and a message in the comment form. 
+Free to you to implement the concept you want.
 
-These informations will be stored in DB using mongoose.
-
-The comment button has to be on the post list and the list of comments has to be on the post page.
-
-For the likes (anonymous) we will have a counter beside the like button to display the number of likes ( stored in DB ).
-
-*Note that we don't have connected user so this test is more to see how you implement the logic*
-
-
-### 3 - Filter the posts
-
-Add a filtering component which can sort posts by relevance.
-
-The filter allows the user to enter
- - simple text
- - a location (point) and a radius
-
-Determine how to score the results by proximity and text matching.
-
-The posts are returned in order of relevance, according to the score of each result.
-
-Use mongoose for the aggregation.
+Note that the guide has to be accessible again if the user wants.
 
 
 _Notes: For evaluation, we will mainly focus on the code structure and readability, the separation of responsibilities in the methods/components, and the visual consistency._
