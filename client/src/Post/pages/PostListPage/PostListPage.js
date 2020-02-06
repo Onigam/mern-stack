@@ -39,10 +39,7 @@ const PostListPage = ({ showAddPost, posts = [] }) => {
         <div className="col-6">
           <PostCreateWidget addPost={handleAddPost} showAddPost={showAddPost} />
         </div>
-      </div>
-      <hr />
-      <div className="row">
-        <div className="col-12">
+        <div className="col-6">
           <PostList handleDeletePost={handleDeletePost} posts={posts} />
         </div>
       </div>

@@ -13,14 +13,16 @@ function App(props) {
   return (
       <div className="w-100">
           <Navbar />
-          <Provider store={props.store}>
-            <BrowserRouter>
-              <Switch>
-                  <Route path="/" exact component={PostListPage} />
-                  <Route path="/posts/:cuid/:slug" exact component={PostDetailPage} />
-              </Switch>
-            </BrowserRouter>
-          </Provider>
+          <div className="w-100 pt-5 mt-5">
+              <Provider store={props.store}>
+                <BrowserRouter>
+                  <Switch>
+                      <Route path="/" exact component={PostListPage} />
+                      <Route path="/posts/:cuid/:slug" exact component={PostDetailPage} />
+                  </Switch>
+                </BrowserRouter>
+              </Provider>
+          </div>
       </div>
 );
 }
