@@ -52,7 +52,7 @@ Free to you to use the service you want to do that and to store your assets (lik
 
 The purpose is to enhance post with media.
 
-You can design the layout you want on cards and on each post page.
+You can design the layout you want on cards and on each post page and use the styling you want.
 
 Also if you want to add one or more features or change the layout, styling and theming about the blog you can.
 
