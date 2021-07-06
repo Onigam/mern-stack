@@ -16,6 +16,6 @@
     "limax": "^2.0.0",
     "mongoose": "^5.8.11",
     "nodemon": "^2.0.2",
-    "sanitize-html": "^1.21.1"
+    "sanitize-html": "^2.3.2"
   }
 }
