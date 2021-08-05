@@ -53,6 +53,17 @@ addPost = async (req, res) => {
  * @returns void
  */
 getPost = async (req, res) => {
+  try {
+    const post = await Post.findOne({ cuid: req.params.cuid });
+
+
+
+    await post.remove();
+    res.json({ post });
+  } catch (error) {
+    next(error);
+  }
+
   Post.findOne({ cuid: req.params.cuid }).exec((err, post) => {
     if (err) {
       res.status(500).send(err);
@@ -67,16 +78,15 @@ getPost = async (req, res) => {
  * @param res
  * @returns void
  */
-deletePost = async (req, res) => {
-  Post.findOne({ cuid: req.params.cuid }).exec((err, post) => {
-    if (err) {
-      res.status(500).send(err);
-    }
+deletePost = async (req, res, next) => {
+  try {
+    const post = await Post.findOne({ cuid: req.params.cuid });
 
-    post.remove(() => {
-      res.status(200).end();
-    });
-  });
+    await post.remove();
+    res.status(200).end();
+  } catch (error) {
+    next(error);
+  }
 };
 
 module.exports = {
