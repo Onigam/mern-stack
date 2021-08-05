@@ -18,6 +18,7 @@
     "dotenv": "^10.0.0",
     "express": "^4.17.1",
     "express-paginate": "^1.0.2",
+    "express-validator": "^6.12.1",
     "http-errors": "^1.8.0",
     "limax": "^2.0.0",
     "mongoose": "^5.8.11",
@@ -25,7 +26,6 @@
     "passport": "^0.4.1",
     "passport-jwt": "^4.0.0",
     "passport-local": "^1.0.0",
-    "s": "^1.0.0",
-    "sanitize-html": "^2.3.2"
+    "s": "^1.0.0"
   }
 }

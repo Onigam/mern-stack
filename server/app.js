@@ -5,7 +5,8 @@ const cors = require('cors');
 
 const app = express();
 
-const posts = require('./routes/post.routes');
+const postRoutes = require('./routes/post.routes');
+const authRoutes = require('./routes/auth.routes');
 const auth = require('./auth');
 
 auth.registerPassportStrategies();
@@ -21,7 +22,8 @@ app.get('/', (req, res, next) => {
     res.send("Hello from the API");
 });
 
-app.use('/api/posts', posts);
+app.use('/api/posts', postRoutes);
+app.use('/api/auth', authRoutes);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

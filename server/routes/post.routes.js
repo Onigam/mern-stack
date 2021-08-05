@@ -1,21 +1,29 @@
 const express = require('express');
 const passport = require('passport');
+const { body } = require('express-validator');
+
 const PostController = require('../controllers/post.controller');
 
 const router = express.Router();
 
 const authRoute = passport.authenticate('jwt', { session: false });
 
+const postInputvalidation = [
+    body('name', 'name required').exists().trim().escape(),
+    body('title', 'title is required').exists().trim().escape(),
+    body('content', 'content is required').exists().trim().escape()
+];
+
 // Get all Posts
-router.route('/posts').get(PostController.getPosts);
+router.route('/').get(PostController.getPosts);
 
 // Get one post by cuid
-router.route('/posts/:cuid').get(PostController.getPost);
+router.route('/:cuid').get(PostController.getPost);
 
 // Add a new Post
-router.route('/posts').post(authRoute, PostController.addPost);
+router.route('/').post(authRoute, postInputvalidation, PostController.addPost);
 
 // Delete a post by cuid
-router.route('/posts/:cuid').delete(authRoute, PostController.deletePost);
+router.route('/:cuid').delete(authRoute, PostController.deletePost);
 
 module.exports = router;
