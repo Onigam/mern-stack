@@ -12,7 +12,7 @@ const PostReducer = (state = initialState, action) => {
 
     case ADD_POSTS :
       return {
-        data: action.posts,
+        data: action.posts || [],
       };
 
     case DELETE_POST :
