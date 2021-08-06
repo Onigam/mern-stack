@@ -40,16 +40,17 @@ const registerPassportStrategies = () => {
         },
         async (email, password, done) => {
             try {
-                const user = await UserModel.findOne({ email });
+                const errorMessage = 'The email or password are invalid';
+                const user = await User.findOne({ email });
 
                 if (!user) {
-                    return done(null, false, { message: 'The email or password is invalid' });
+                    throw new Error(errorMessage);
                 }
 
-                const validate = await user.isValidPassword(password);
+                const validate = await user.isPasswordValid(password);
 
                 if (!validate) {
-                    return done(null, false, { message: 'The email or password is invalid' });
+                    throw new Error(errorMessage);
                 }
 
                 return done(null, user, { message: 'Success' });

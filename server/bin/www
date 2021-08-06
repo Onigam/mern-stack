@@ -1,8 +1,8 @@
 #!/usr/bin/env node
 
+const config = require('../config');
 const app = require('../app');
 const db = require('../db');
-const config = require('../config');
 
 process.on('unhandledRejection', (reason, p) => {
   throw reason;

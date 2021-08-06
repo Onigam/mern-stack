@@ -9,10 +9,11 @@ const postRoutes = require('./routes/post.routes');
 const authRoutes = require('./routes/auth.routes');
 const auth = require('./auth');
 
+app.use(cors());
+
 auth.registerPassportStrategies();
 
 app.use(express.json());
-app.use(cors());
 app.use(express.urlencoded({ extended: false }));
 
 //setup pagination middleware

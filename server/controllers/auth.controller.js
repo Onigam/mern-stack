@@ -1,4 +1,5 @@
 const passport = require('passport');
+const jwt = require('jsonwebtoken');
 
 const config = require('../config');
 
@@ -20,17 +21,10 @@ postSignUp = (req, res) => {
  * @returns void
  */
 postLogin = async (req, res, next) => {
-    passport.authenticate('login', async (err, user, info) => {
+    passport.authenticate('login', async (err, user) => {
         try {
             if (err) {
-                const error = new Error('An error occurred.');
-                return next(error);
-            }
-
-            if (!user) {
-                const error = new Error('Not found');
-                error.statusCode = 404;
-                return next(error);
+                return next(err);
             }
 
             req.login(user, { session: false }, async (loginError) => {
@@ -38,10 +32,14 @@ postLogin = async (req, res, next) => {
                     return next(loginError);
                 }
 
-                const body = { _id: user._id, email: user.email };
-                const token = jwt.sign({ user: body }, config.bcryptSecret);
+                try {
+                    const body = { _id: user._id, email: user.email };
+                    const token = jwt.sign({ user: body }, config.bcryptSecret);
 
-                return res.json({ token });
+                    return res.json({ token });
+                } catch (error) {
+                    return next(error);
+                }
             });
         } catch (error) {
             return next(error);
