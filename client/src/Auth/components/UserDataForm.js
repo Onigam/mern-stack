@@ -3,8 +3,9 @@ import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 
 import PageHeader from '../../components/PageHeader';
+import ErrorArea from './ErrorArea';
 
-const UserDataForm = ({ headerTitle, onClickHandler }) => {
+const UserDataForm = ({ headerTitle, error, onClickHandler, onErrorDismiss }) => {
     const [state, setState] = useState({});
 
     const handleChange = (evt) => {
@@ -30,11 +31,7 @@ const UserDataForm = ({ headerTitle, onClickHandler }) => {
                     </Button>
                 </div>
             </div>
-            <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
-                <Alert onClose={handleClose} severity="error">
-                    This is a success message!
-                </Alert>
-            </Snackbar>
+            <ErrorArea error={error} onErrorDismiss={onErrorDismiss} />
         </div>
     );
 };

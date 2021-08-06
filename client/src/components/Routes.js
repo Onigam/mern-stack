@@ -1,5 +1,5 @@
 import React from 'react';
-import { Route, BrowserRouter, Switch, Redirect } from 'react-router-dom';
+import { Route, Switch, Redirect } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
 import PostListPage from '../Post/pages/PostListPage/PostListPage';
@@ -11,22 +11,20 @@ const Routes = () => {
     const isAuth = useSelector(state => state.user.isLoggedIn);
 
     return (
-        <BrowserRouter>
-            <Switch>
-                <Route path="/" exact component={PostListPage} />
-                <Route path="/posts/:cuid/:slug" exact component={PostDetailPage} />
-                {
-                    isAuth ? null
+        <Switch>
+            <Route path="/" exact component={PostListPage} />
+            <Route path="/posts/:cuid/:slug" exact component={PostDetailPage} />
+            {
+                isAuth ? null
                     : (
                         <>
                             <Route path="/login" exact component={LoginPage} />
                             <Route path="/signup" exact component={SignUpPage} />
                         </>
                     )
-                }
-                <Redirect to="/" />
-            </Switch>
-        </BrowserRouter>
+            }
+            <Redirect to="/" />
+        </Switch>
     )
 }
 

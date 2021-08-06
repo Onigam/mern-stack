@@ -1,14 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
-
 import { Provider } from 'react-redux';
 
 import './App.css';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
-import Navbar from './components/Navbar';
-import Routes from './components/Routes';
+import Main from './components/Main';
 
 const theme = createMuiTheme({
     palette: {
@@ -23,10 +21,7 @@ function App(props) {
         <ThemeProvider theme={theme}>
             <div className="w-100">
                 <Provider store={props.store}>
-                    <Navbar />
-                    <div className="w-100 pt-5 mt-5">
-                        <Routes />
-                    </div>
+                    <Main />
                 </Provider>
             </div>
         </ThemeProvider>
