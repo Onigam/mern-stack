@@ -1,7 +1,7 @@
 const cuid = require('cuid');
 const slug = require('limax');
-const { validationResult } = require('express-validator');
 
+const handledInputErrors = require('../utils/validator');
 const Post = require('../models/post');
 
 /**
@@ -44,11 +44,8 @@ getPosts = async (req, res) => {
  * @returns void
  */
 addPost = async (req, res) => {
-  const errors = validationResult(req);
-
   try {
-    if (!errors.isEmpty()) {
-      res.status(422).json({ errors: errors.array() });
+    if (handledInputErrors(req, res)) {
       return;
     }
 

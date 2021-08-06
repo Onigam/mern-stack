@@ -25,7 +25,13 @@ const registerPassportStrategies = () => {
 
                 return done(null, user);
             } catch (error) {
-                done(error);
+                console.log(error);
+
+                if (error.code === 11000) {
+                    done(new Error("User already exists"));
+                } else {
+                    done(error);
+                }
             }
         }
     ));
@@ -55,6 +61,7 @@ const registerPassportStrategies = () => {
 
                 return done(null, user, { message: 'Success' });
             } catch (error) {
+                console.log(error);
                 return done(error);
             }
         }
@@ -72,6 +79,7 @@ const registerPassportStrategies = () => {
             try {
                 return done(null, token.user);
             } catch (error) {
+                console.log(error);
                 done(error);
             }
         }

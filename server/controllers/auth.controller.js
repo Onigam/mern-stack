@@ -1,6 +1,7 @@
 const passport = require('passport');
 const jwt = require('jsonwebtoken');
 
+const handledInputErrors = require('../utils/validator');
 const config = require('../config');
 
 /**
@@ -10,7 +11,7 @@ const config = require('../config');
  * @returns void
  */
 postSignUp = (req, res) => {
-    res.status(200).end();
+    res.json({ success: true });
 }
 
 /**
@@ -21,6 +22,10 @@ postSignUp = (req, res) => {
  * @returns void
  */
 postLogin = async (req, res, next) => {
+    if (handledInputErrors(req, res)) {
+        return;
+    }
+
     passport.authenticate('login', async (err, user) => {
         try {
             if (err) {
