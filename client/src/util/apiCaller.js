@@ -41,8 +41,6 @@ export const extractErrorMessage = (res) => {
     error = res.error.message;
   } else if (res.errors) {
     error = res.errors.map(bodyError => bodyError.msg).join(', ');
-  } else {
-    error = res.message;
   }
 
   return error;

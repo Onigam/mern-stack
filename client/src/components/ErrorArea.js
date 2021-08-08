@@ -1,6 +1,7 @@
 import React from 'react';
 import Snackbar from '@material-ui/core/Snackbar';
 import MuiAlert from '@material-ui/lab/Alert';
+import PropTypes from 'prop-types';
 
 const ErrorArea = ({ error, onErrorDismiss }) => {
     const handleClose = (event, reason) => {
@@ -19,5 +20,9 @@ const ErrorArea = ({ error, onErrorDismiss }) => {
         </Snackbar>
     )
 }
+
+ErrorArea.propTypes = {
+    onErrorDismiss: PropTypes.func.isRequired
+};
 
 export default ErrorArea;

@@ -24,6 +24,7 @@ export function login(error, isLoggedIn) {
 export function loginRequest(user) {
     return (dispatch) => {
         if (!user.email || !user.password) {
+            dispatch(login("Email and password are required"));
             return;
         }
 
@@ -64,6 +65,7 @@ export function logout() {
 export function signupRequest(user) {
     return (dispatch) => {
         if (!user.email || !user.password) {
+            dispatch(signup("Email and password are required"));
             return;
         }
 

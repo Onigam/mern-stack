@@ -4,9 +4,8 @@ import AppBar from '@material-ui/core/AppBar';
 import Typography from '@material-ui/core/Typography';
 import { Link as RouterLink } from 'react-router-dom';
 import Link from '@material-ui/core/Link';
-import { useDispatch, useSelector } from 'react-redux';
+import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/core/styles';
-import { logout } from '../Auth/store/UserActions';
 
 const useStyles = makeStyles((theme) => ({
     title: {
@@ -14,14 +13,8 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-const Navbar = () => {
-    const dispatch = useDispatch();
+const Navbar = ({ isAuth, handleLogout }) => {
     const classes = useStyles();
-    const isAuth = useSelector(state => state.user.isLoggedIn);
-
-    const handleLogout = () => {
-        dispatch(logout());
-    }
 
     const navItems = [
         { id: 'home', text: 'Home', link: '/', auth: null },
@@ -29,7 +22,6 @@ const Navbar = () => {
         { id: 'signup', text: 'Signup', link: '/signup', auth: false },
         { id: 'logout', text: 'Logout', handler: handleLogout, auth: true }
     ];
-
 
     return (
         <div className={classes.root}>
@@ -49,6 +41,11 @@ const Navbar = () => {
             </AppBar>
         </div>
     );
+};
+
+Navbar.propTypes = {
+    handleLogout: PropTypes.func.isRequired,
+    isAuth: PropTypes.bool.isRequired
 };
 
 export default Navbar;

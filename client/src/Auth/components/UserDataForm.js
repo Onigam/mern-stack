@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
+import PropTypes from 'prop-types';
 
 import PageHeader from '../../components/PageHeader';
-import ErrorArea from './ErrorArea';
+import ErrorArea from '../../components/ErrorArea';
 
 const UserDataForm = ({ headerTitle, error, onClickHandler, onErrorDismiss }) => {
     const [state, setState] = useState({});
@@ -36,5 +37,10 @@ const UserDataForm = ({ headerTitle, error, onClickHandler, onErrorDismiss }) =>
     );
 };
 
+UserDataForm.propTypes = {
+    onErrorDismiss: PropTypes.func.isRequired,
+    onClickHandler: PropTypes.func.isRequired,
+    headerTitle: PropTypes.string.isRequired
+};
 
 export default UserDataForm;
