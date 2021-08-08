@@ -26,9 +26,10 @@ findPostByCuId = async (cuid) => {
  * Get all posts
  * @param req
  * @param res
+ * @param next
  * @returns void
  */
-getPosts = async (req, res) => {
+getPosts = async (req, res, next) => {
   try {
     const posts = await Post.find().sort('-dateAdded').limit(req.query.limit).skip(req.skip);
     res.json({ posts });
@@ -41,18 +42,19 @@ getPosts = async (req, res) => {
  * Save a post
  * @param req
  * @param res
+ * @param next
  * @returns void
  */
-addPost = async (req, res) => {
+addPost = async (req, res, next) => {
   try {
     if (handledInputErrors(req, res)) {
       return;
     }
 
     const newPost = new Post({
-      title: req.body.title,
-      name: req.body.name,
-      content: req.body.content,
+      title: req.body.post.title,
+      name: req.body.post.name,
+      content: req.body.post.content,
       creator: req.user._id.toString()
     });
 
@@ -71,9 +73,10 @@ addPost = async (req, res) => {
  * Get a single post
  * @param req
  * @param res
+ * @param next
  * @returns void
  */
-getPost = async (req, res) => {
+getPost = async (req, res, next) => {
   try {
     const post = await findPostByCuId(req.params.cuid);
 
@@ -87,6 +90,7 @@ getPost = async (req, res) => {
  * Delete a post
  * @param req
  * @param res
+ * @param next
  * @returns void
  */
 deletePost = async (req, res, next) => {
@@ -101,7 +105,7 @@ deletePost = async (req, res, next) => {
     }
 
     await post.remove();
-    res.status(200).end();
+    res.json({message: "Post deleted"});
   } catch (error) {
     next(error);
   }

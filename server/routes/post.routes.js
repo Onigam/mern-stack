@@ -9,9 +9,9 @@ const router = express.Router();
 const authRoute = passport.authenticate('jwt', { session: false });
 
 const postInputvalidation = [
-    body('name', 'name required').exists().trim().escape(),
-    body('title', 'title is required').exists().trim().escape(),
-    body('content', 'content is required').exists().trim().escape()
+    body('post.name', 'name required').exists().trim().escape(),
+    body('post.title', 'title is required').exists().trim().escape(),
+    body('post.content', 'content is required').exists().trim().escape()
 ];
 
 // Get all Posts
