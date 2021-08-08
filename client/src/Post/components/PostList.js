@@ -14,6 +14,7 @@ function PostList(props) {
             post={post}
             key={post.cuid}
             isAuth={props.isAuth}
+            userId={props.userId}
             onDelete={() => props.handleDeletePost(post.cuid)}
           />
         ))
@@ -30,6 +31,7 @@ PostList.propTypes = {
     slug: PropTypes.string.isRequired,
     cuid: PropTypes.string.isRequired,
   })).isRequired,
+  userId: PropTypes.string,
   isAuth: PropTypes.bool.isRequired,
   handleDeletePost: PropTypes.func.isRequired,
 };

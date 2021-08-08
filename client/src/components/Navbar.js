@@ -11,9 +11,12 @@ const useStyles = makeStyles((theme) => ({
     title: {
         marginRight: "24px",
     },
+    greet: {
+        flexGrow: 1
+    }
 }));
 
-const Navbar = ({ isAuth, handleLogout }) => {
+const Navbar = ({ isAuth, userEmail, handleLogout }) => {
     const classes = useStyles();
 
     const navItems = [
@@ -37,6 +40,13 @@ const Navbar = ({ isAuth, handleLogout }) => {
                             </Typography>
                         ))
                     }
+                    {
+                        userEmail ?
+                            <Typography variant="subtitle1" align="right" className={classes.greet}>
+                                <span className="text-white">Hello, {userEmail}</span>
+                            </Typography> :
+                            null
+                    }
                 </Toolbar>
             </AppBar>
         </div>
@@ -45,7 +55,8 @@ const Navbar = ({ isAuth, handleLogout }) => {
 
 Navbar.propTypes = {
     handleLogout: PropTypes.func.isRequired,
-    isAuth: PropTypes.bool.isRequired
+    isAuth: PropTypes.bool.isRequired,
+    userEmail: PropTypes.string
 };
 
 export default Navbar;

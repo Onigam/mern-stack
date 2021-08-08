@@ -13,11 +13,11 @@ export function clearLoginError() {
     };
 }
 
-export function login(error, isLoggedIn) {
+export function login(error, user) {
     return {
         type: LOGIN,
         error: error,
-        isLoggedIn,
+        user,
     };
 }
 
@@ -34,8 +34,17 @@ export function loginRequest(user) {
                     dispatch(login(extractErrorMessage(res), null));
                 } else {
                     localStorage.setItem('token', res.token);
-                    dispatch(login(null, true));
+                    dispatch(login(null, res.user));
                 }
+            });
+    };
+}
+
+export function getUser() {
+    return (dispatch) => {
+        return callApi('auth/user', 'get')
+            .then(res => {
+                dispatch(login(null, res.user));
             });
     };
 }

@@ -5,6 +5,21 @@ const handledInputErrors = require('../utils/validator');
 const config = require('../config');
 
 /**
+ * Sends the logged in user info
+ * @param req
+ * @param res
+ * @returns void
+ */
+getUser = (req, res) => {
+    res.json({
+        user: {
+            id: req.user._id.toString(),
+            email: req.user.email
+        }
+    });
+}
+
+/**
  * Sends the confirmation that a user signed up successfully
  * @param req
  * @param res
@@ -41,7 +56,13 @@ postLogin = async (req, res, next) => {
                     const body = { _id: user._id, email: user.email };
                     const token = jwt.sign({ user: body }, config.bcryptSecret);
 
-                    return res.json({ token });
+                    return res.json({
+                        token,
+                        user: {
+                            id: user._id,
+                            email: user.email
+                        }
+                    });
                 } catch (error) {
                     return next(error);
                 }
@@ -54,5 +75,6 @@ postLogin = async (req, res, next) => {
 
 module.exports = {
     postSignUp,
-    postLogin
+    postLogin,
+    getUser
 };

@@ -4,11 +4,12 @@ import { useDispatch, useSelector } from 'react-redux';
 import { BrowserRouter } from 'react-router-dom';
 import Navbar from './Navbar';
 import Routes from './Routes';
-import { login, logout } from '../Auth/store/UserActions';
+import { getUser, logout } from '../Auth/store/UserActions';
 
 const Main = () => {
     const dispatch = useDispatch();
     const isAuth = useSelector(state => state.user.isLoggedIn);
+    const userEmail = useSelector(state => state.user.user.email);
 
     const handleLogout = () => {
         dispatch(logout());
@@ -19,13 +20,13 @@ const Main = () => {
         const token = localStorage.getItem('token');
 
         if(token) {
-            dispatch(login(null, true));
+            dispatch(getUser());
         }
     }, []);
 
     return (
         <BrowserRouter>
-            <Navbar isAuth={isAuth} handleLogout={handleLogout} />
+            <Navbar userEmail={userEmail} isAuth={isAuth} handleLogout={handleLogout} />
             <div className="w-100 pt-5 mt-5">
                 <Routes isAuth={isAuth} />
             </div>

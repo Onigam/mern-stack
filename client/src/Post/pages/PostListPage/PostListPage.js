@@ -13,6 +13,7 @@ const PostListPage = () => {
   const posts = useSelector(state => state.posts.data);
   const postError = useSelector(state => state.posts.error);
   const isAuth = useSelector(state => state.user.isLoggedIn);
+  const userId = useSelector(state => state.user.user.id);
 
   const onErrorDismiss = () => {
     dispatch(clearPostError());
@@ -51,7 +52,12 @@ const PostListPage = () => {
           ) : null
         }
         <div className={isAuth ? "col-6" : "col-12"}>
-          <PostList handleDeletePost={handleDeletePost} posts={posts} isAuth={isAuth} />
+          <PostList
+            handleDeletePost={handleDeletePost}
+            posts={posts}
+            isAuth={isAuth}
+            userId={userId}
+          />
         </div>
       </div>
       <ErrorArea error={postError} onErrorDismiss={onErrorDismiss} />

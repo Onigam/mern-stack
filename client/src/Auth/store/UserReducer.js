@@ -2,6 +2,7 @@ import { LOGIN, CLEAR_LOGIN_ERROR, CLEAR_SIGNUP_INFO, LOGOUT, SIGNUP } from './U
 
 // Initial State
 const initialState = {
+  user: {},
   isLoggedIn: false,
   loginError: null,
   signUpError: null,
@@ -13,7 +14,8 @@ const UserReducer = (state = initialState, action) => {
     case LOGIN:
       return {
         ...state,
-        isLoggedIn: action.isLoggedIn,
+        user: action.user,
+        isLoggedIn: !!action.user,
         loginError: action.error
       };
     case CLEAR_LOGIN_ERROR:
@@ -36,6 +38,7 @@ const UserReducer = (state = initialState, action) => {
     case LOGOUT:
       return {
         ...state,
+        user: {},
         isLoggedIn: false
       };
     default:

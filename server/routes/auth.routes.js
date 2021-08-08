@@ -26,4 +26,7 @@ router.route('/signup').post(authValidation, preSignupCheck, passport.authentica
 // logins the current user and returns a token
 router.route('/login').post(authValidation, AuthController.postLogin);
 
+// gets the current logged in user data
+router.route('/user').get(passport.authenticate('jwt', { session: false }), AuthController.getUser);
+
 module.exports = router;

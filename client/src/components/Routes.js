@@ -7,7 +7,7 @@ import PostDetailPage from '../Post/pages/PostDetailPage/PostDetailPage';
 import SignUpPage from '../Auth/pages/SignUpPage/SignUpPage';
 import LoginPage from '../Auth/pages/LoginPage/LoginPage';
 
-const Routes = ({isAuth}) => {
+const Routes = ({ isAuth }) => {
     return (
         <Switch>
             <Route path="/" exact component={PostListPage} />
