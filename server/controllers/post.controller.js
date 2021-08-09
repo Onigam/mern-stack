@@ -2,6 +2,7 @@ const cuid = require('cuid');
 const slug = require('limax');
 
 const handledInputErrors = require('../utils/validator');
+const { uploadImage, deleteTempFile } = require('../utils/fileUpload');
 const Post = require('../models/post');
 
 /**
@@ -48,23 +49,35 @@ getPosts = async (req, res, next) => {
 addPost = async (req, res, next) => {
   try {
     if (handledInputErrors(req, res)) {
+      if (req.file) {
+        await deleteTempFile(req.file.path);
+      }
+
       return;
     }
 
     const newPost = new Post({
-      title: req.body.post.title,
-      name: req.body.post.name,
-      content: req.body.post.content,
+      title: req.body.title,
+      name: req.body.name,
+      content: req.body.content,
       creator: req.user._id.toString()
     });
 
     newPost.slug = slug(newPost.title.toLowerCase(), { lowercase: true });
     newPost.cuid = cuid();
 
+    if (req.file) {
+      newPost.imageUrl = await uploadImage(req.file.path);
+    }
+
     const saved = await newPost.save();
 
     res.json({ post: saved });
   } catch (error) {
+    if (req.file) {
+      await deleteTempFile(req.file.path);
+    }
+
     next(error);
   }
 };
@@ -105,7 +118,7 @@ deletePost = async (req, res, next) => {
     }
 
     await post.remove();
-    res.json({message: "Post deleted"});
+    res.json({ message: "Post deleted" });
   } catch (error) {
     next(error);
   }
