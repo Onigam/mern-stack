@@ -23,13 +23,16 @@ export function addPost(error, post) {
 
 export function addPostRequest(post) {
   return (dispatch) => {
-    return callApi('posts', 'post', {
-      post: {
-        name: post.name,
-        title: post.title,
-        content: post.content,
-      },
-    }).then(res => dispatch(addPost(extractErrorMessage(res), res.post)));
+    const formdata = new FormData();
+    formdata.append("title", post.title);
+    formdata.append("content", post.content);
+    formdata.append("name", post.name);
+
+    if(post.file) {
+      formdata.append("image", post.file);
+    }
+
+    return callApi('posts', 'post', formdata, false).then(res => dispatch(addPost(extractErrorMessage(res), res.post)));
   };
 }
 

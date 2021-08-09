@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import Logo from '../logo.svg';
 
@@ -12,5 +13,9 @@ const PageHeader = ({ headerText }) => {
         </div>
     )
 }
+
+PageHeader.propTypes = {
+    headerText: PropTypes.string.isRequired
+};
 
 export default PageHeader;

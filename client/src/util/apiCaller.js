@@ -2,10 +2,8 @@ import fetch from 'isomorphic-fetch';
 
 export const API_URL = 'http://localhost:3000/api';
 
-export default async (endpoint, method = 'get', body) => {
-  const headers = {
-    'content-type': 'application/json'
-  };
+export default async (endpoint, method = 'get', body, jsonBody = true) => {
+  const headers = {};
 
   const token = localStorage.getItem('token');
 
@@ -13,10 +11,14 @@ export default async (endpoint, method = 'get', body) => {
     headers.authorization = `bearer ${token}`;
   }
 
+  if(jsonBody) {
+    headers['content-type'] = 'application/json'
+  }
+
   return fetch(`${API_URL}/${endpoint}`, {
     headers,
     method,
-    body: JSON.stringify(body),
+    body: jsonBody ? JSON.stringify(body) : body,
   })
     .then(response => response.json().then(json => ({ json, response })))
     .then(({ json, response }) => {

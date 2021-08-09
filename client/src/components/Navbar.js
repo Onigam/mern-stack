@@ -11,6 +11,10 @@ const useStyles = makeStyles((theme) => ({
     title: {
         marginRight: "24px",
     },
+    titleLink: {
+        marginRight: "24px",
+        marginTop: "2px"
+    },
     greet: {
         flexGrow: 1
     }
@@ -32,7 +36,7 @@ const Navbar = ({ isAuth, userEmail, handleLogout }) => {
                 <Toolbar>
                     {
                         navItems.filter(item => item.auth == null || item.auth === isAuth).map(item => (
-                            <Typography key={item.id} variant="h6" className={classes.title}>
+                            <Typography key={item.id} variant="h6" className={item.link ? classes.titleLink : classes.title}>
                                 {
                                     item.link ? <Link component={RouterLink} to={item.link} className="text-white">{item.text}</Link>
                                         : <Link component="button" onClick={item.handler} className="text-white">{item.text}</Link>
